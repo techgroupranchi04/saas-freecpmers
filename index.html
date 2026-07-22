@@ -715,14 +715,16 @@
             </div>
 
             <nav class="nav-menu">
-                <div class="nav-item" id="nav-volunteers" onclick="switchPanel('volunteers')">
-                    <span class="material-symbols-outlined">group</span>
-                    Manage Volunteers
-                </div>
                 <div class="nav-item active" id="nav-dashboard" onclick="switchPanel('dashboard')">
                     <span class="material-symbols-outlined">analytics</span>
                     Dashboard
                 </div>
+
+                <div class="nav-item" id="nav-volunteers" onclick="switchPanel('volunteers')">
+                    <span class="material-symbols-outlined">group</span>
+                    Manage Volunteers
+                </div>
+
                 <div class="nav-item" id="nav-register" onclick="switchPanel('register')">
                     <span class="material-symbols-outlined">person_add</span>
                     Register Attendee
@@ -968,7 +970,8 @@
 
                     <div id="scanAlert" class="scan-alert">
                         <h4 id="alertTitle"><span class="material-symbols-outlined" id="alertIcon">check_circle</span>
-                            <span>Status</span></h4>
+                            <span>Status</span>
+                        </h4>
                         <p id="alertMsg">Message goes here</p>
                     </div>
 
