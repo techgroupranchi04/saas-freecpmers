@@ -214,6 +214,7 @@
             right: 16px;
             color: var(--border);
             cursor: pointer;
+            display: none;
         }
 
         .avatar {
@@ -221,7 +222,6 @@
             height: 48px;
             border-radius: 50%;
             background-color: #e0e0e0;
-            background-image: url('https://ui-avatars.com/api/?name=User&background=333&color=fff');
             background-size: cover;
         }
 
@@ -285,7 +285,7 @@
 
         .panel {
             display: none;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -308,7 +308,63 @@
             margin-bottom: 24px;
         }
 
-        /* Dashboard Stats */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            margin-top: 16px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .data-table th {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .data-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .table-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge.success {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .badge.neutral {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        .col-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .col-subtitle {
+            color: var(--text-muted);
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -337,7 +393,6 @@
             color: var(--primary);
         }
 
-        /* QR Display */
         #qrResult {
             text-align: center;
         }
@@ -362,7 +417,6 @@
             margin-top: 10px;
         }
 
-        /* Scan Status */
         .scan-alert {
             padding: 16px;
             border-radius: 8px;
@@ -401,6 +455,212 @@
             color: var(--text-dark);
             line-height: 1.5;
         }
+
+        .mobile-header {
+            display: none;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .login-card {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .table-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .table-controls input,
+            .table-controls select {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                bottom: 0;
+                z-index: 1000;
+                transition: left 0.3s ease;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .close-btn {
+                display: block;
+            }
+
+            .sidebar-overlay.open {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 950;
+                backdrop-filter: blur(2px);
+            }
+
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 60px;
+                background: var(--surface);
+                border-bottom: 1px solid var(--border-light);
+                padding: 0 20px;
+                z-index: 900;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            }
+
+            .mobile-header h2 {
+                font-size: 18px;
+                font-weight: 600;
+                color: var(--primary);
+                margin-left: 12px;
+            }
+
+            .main-content {
+                padding: 16px;
+                padding-top: 80px;
+            }
+
+            .data-table,
+            .data-table tbody,
+            .data-table tr,
+            .data-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .data-table thead {
+                display: none;
+            }
+
+            .data-table tr {
+                background-color: var(--surface);
+                border: 1px solid var(--border-light);
+                border-radius: 12px;
+                margin-bottom: 12px;
+                padding: 16px 16px 12px 16px;
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            }
+
+            .data-table tr.has-checkbox {
+                padding-left: 48px;
+            }
+
+            .data-table td {
+                padding: 0;
+                border: none;
+                text-align: left;
+            }
+
+            .col-checkbox {
+                position: absolute;
+                top: 16px;
+                left: 16px;
+                width: auto !important;
+            }
+
+            .col-checkbox input {
+                width: 18px;
+                height: 18px;
+                margin: 0;
+                accent-color: var(--primary);
+            }
+
+            .col-name {
+                order: 1;
+                width: 100%;
+                font-size: 16px;
+                margin-bottom: 4px;
+                padding-right: 0 !important;
+                line-height: 1.3;
+            }
+
+            .col-subtitle,
+            .col-email {
+                order: 2;
+                width: 100%;
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            .mobile-pill {
+                order: 4;
+                display: inline-flex !important;
+                align-items: center;
+                background-color: #f4f6f8;
+                padding: 4px 10px;
+                border-radius: 16px;
+                font-size: 12px;
+                font-weight: 500;
+                color: var(--text-muted) !important;
+                margin-right: 8px;
+                margin-bottom: 4px;
+                width: auto !important;
+                border: 1px solid #eaeaea;
+            }
+
+            .col-status {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                padding: 0 !important;
+                width: auto !important;
+                order: 0;
+            }
+
+            .col-role {
+                position: relative;
+                top: auto;
+                right: auto;
+                width: 100% !important;
+                order: 3;
+                margin-top: 4px;
+                margin-bottom: 8px;
+            }
+
+            .col-role select {
+                padding: 8px 12px;
+                font-size: 13px;
+                max-width: 100%;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+                border-color: var(--border-light);
+            }
+
+            .qr-controls {
+                flex-direction: column;
+            }
+
+            .qr-controls button {
+                width: 100% !important;
+                margin: 5px 0 !important;
+            }
+        }
     </style>
 </head>
 
@@ -436,16 +696,16 @@
             <div class="divider">OR</div>
 
             <button class="btn-google" onclick="handleLogin(event, 'google')">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKgAK0IaePFSDmAgQldPbcUEvCfJCVshYghjijE9QtMA&s=10"
-                    alt="Google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
                 Continue With Google
             </button>
         </div>
     </div>
 
     <div id="appView">
-        <aside class="sidebar">
-            <span class="material-symbols-outlined close-btn">close</span>
+        <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+        <aside class="sidebar" id="appSidebar">
+            <span class="material-symbols-outlined close-btn" onclick="toggleSidebar()">close</span>
             <div class="sidebar-header">
                 <div class="avatar" id="userAvatar"></div>
                 <div class="user-info">
@@ -455,22 +715,20 @@
             </div>
 
             <nav class="nav-menu">
-                <!-- Admin Only -->
                 <div class="nav-item active" id="nav-dashboard" onclick="switchPanel('dashboard')">
                     <span class="material-symbols-outlined">analytics</span>
                     Dashboard
                 </div>
+
                 <div class="nav-item" id="nav-volunteers" onclick="switchPanel('volunteers')">
                     <span class="material-symbols-outlined">group</span>
                     Manage Volunteers
                 </div>
 
-                <!-- Registration Vol Only -->
                 <div class="nav-item" id="nav-register" onclick="switchPanel('register')">
                     <span class="material-symbols-outlined">person_add</span>
                     Register Attendee
                 </div>
-                <!-- Check-in Vol Only -->
                 <div class="nav-item" id="nav-scanner" onclick="switchPanel('scanner')">
                     <span class="material-symbols-outlined">qr_code_scanner</span>
                     Scanner
@@ -484,37 +742,69 @@
         </aside>
 
         <main class="main-content">
+            <div class="mobile-header">
+                <span class="material-symbols-outlined hamburger" style="cursor:pointer; color: var(--text-dark);"
+                    onclick="toggleSidebar()">menu</span>
+                <h2>Freecomers Festival</h2>
+            </div>
 
-            <!-- Volunteer Management Panel (Admin Only) -->
             <div id="panel-volunteers" class="panel">
                 <h2 class="page-title">Manage Volunteers</h2>
                 <div class="card">
                     <p style="margin-bottom: 20px; color: var(--text-muted);">Select users from the platform to assign
                         as volunteers for your event.</p>
 
-                    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                        <input type="text" placeholder="Search users by email..."
-                            style="flex: 1; padding: 10px; border: 1px solid var(--border-light); border-radius: 8px;">
-                        <button class="btn-primary"
-                            style="width: auto; margin: 0; padding: 10px 20px; border-radius: 8px;">Search</button>
+                    <div class="table-controls">
+                        <input type="text" id="searchVolunteers" placeholder="Search users by email or name..."
+                            style="flex: 1; padding: 10px; border: 1px solid var(--border-light); border-radius: 8px;"
+                            onkeyup="renderVolunteerList()">
+                        <select id="filterRole"
+                            style="padding: 10px; border: 1px solid var(--border-light); border-radius: 8px;"
+                            onchange="renderVolunteerList()">
+                            <option value="all">All Roles</option>
+                            <option value="null">Unassigned</option>
+                            <option value="registration">Registration</option>
+                            <option value="checkin">Check-in</option>
+                        </select>
+                        <select id="sortVolunteers"
+                            style="padding: 10px; border: 1px solid var(--border-light); border-radius: 8px;"
+                            onchange="renderVolunteerList()">
+                            <option value="name_asc">Name (A-Z)</option>
+                            <option value="name_desc">Name (Z-A)</option>
+                        </select>
                     </div>
 
-                    <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                        <thead>
-                            <tr style="border-bottom: 2px solid var(--border-light);">
-                                <th style="padding: 12px; color: var(--text-muted); font-weight: 500;">User</th>
-                                <th style="padding: 12px; color: var(--text-muted); font-weight: 500;">Email</th>
-                                <th style="padding: 12px; color: var(--text-muted); font-weight: 500;">Assign Role</th>
-                            </tr>
-                        </thead>
-                        <tbody id="volunteerList">
-                            <!-- Populated via JS -->
-                        </tbody>
-                    </table>
+                    <div
+                        style="background: #f9f9f9; padding: 16px; border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <span style="font-size: 14px; font-weight: 500;">Bulk Actions:</span>
+                        <select id="bulkRoleSelect"
+                            style="padding: 8px; border: 1px solid var(--border-light); border-radius: 6px; flex: 1; min-width: 150px;">
+                            <option value="null">Unassigned</option>
+                            <option value="registration">Registration Vol.</option>
+                            <option value="checkin">Check-in Vol.</option>
+                        </select>
+                        <button class="btn-primary"
+                            style="width: auto; margin: 0; padding: 8px 16px; border-radius: 6px;"
+                            onclick="applyBulkRole()">Apply to Selected</button>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 40px;"><input type="checkbox" id="selectAllVol"
+                                            onchange="toggleSelectAllVolunteers(this)"></th>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Current Role</th>
+                                </tr>
+                            </thead>
+                            <tbody id="volunteerList"></tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <!-- Dashboard Panel (Admin Only) -->
             <div id="panel-dashboard" class="panel active">
                 <h2 class="page-title">Live Analytics</h2>
                 <div class="stats-grid">
@@ -527,9 +817,81 @@
                         <div class="value" id="statCheckins">0</div>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+                        <h3>List of Attendees (Tickets Sold)</h3>
+                        <button class="btn-google" style="width: auto; margin: 0; padding: 8px 16px;"
+                            onclick="downloadCSV('attendees')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">download</span> CSV
+                        </button>
+                    </div>
+                    <div class="table-controls">
+                        <input type="text" id="searchAttendees" placeholder="Search by name or email..."
+                            style="flex: 1; padding: 10px; border: 1px solid var(--border-light); border-radius: 8px;"
+                            onkeyup="renderAttendeesTable()">
+                        <select id="sortAttendees"
+                            style="padding: 10px; border: 1px solid var(--border-light); border-radius: 8px;"
+                            onchange="renderAttendeesTable()">
+                            <option value="name_asc">Sort: Name (A-Z)</option>
+                            <option value="name_desc">Sort: Name (Z-A)</option>
+                            <option value="id_desc">Sort: Newest First</option>
+                        </select>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Reg ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendeesTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+                        <h3>Checked-In Attendees</h3>
+                        <button class="btn-google" style="width: auto; margin: 0; padding: 8px 16px;"
+                            onclick="downloadCSV('checkins')">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">download</span> CSV
+                        </button>
+                    </div>
+                    <div class="table-controls">
+                        <input type="text" id="searchCheckins" placeholder="Search check-ins..."
+                            style="flex: 1; padding: 10px; border: 1px solid var(--border-light); border-radius: 8px;"
+                            onkeyup="renderCheckinsTable()">
+                        <select id="sortCheckins"
+                            style="padding: 10px; border: 1px solid var(--border-light); border-radius: 8px;"
+                            onchange="renderCheckinsTable()">
+                            <option value="name_asc">Sort: Name (A-Z)</option>
+                            <option value="name_desc">Sort: Name (Z-A)</option>
+                            <option value="time_desc">Sort: Recent First</option>
+                        </select>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Reg ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Check-in Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="checkinsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
-            <!-- Registration Panel -->
             <div id="panel-register" class="panel">
                 <h2 class="page-title">Register Attendee</h2>
                 <div class="card">
@@ -554,7 +916,8 @@
                     <h3>QR Pass Generated Successfully</h3>
                     <img id="qrImage" src="" alt="QR Code">
 
-                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                    <div class="qr-controls"
+                        style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
                         <button class="btn-primary" style="width: auto; margin: 0;"
                             onclick="alert('Simulating PDF Download...')">
                             <span class="material-symbols-outlined"
@@ -571,9 +934,23 @@
                         Simulated Encrypted Token (Copy to test scanner):</p>
                     <div class="token-string" id="qrTokenString"></div>
                 </div>
+
+                <div class="card" id="bulkUploadCard" style="display: none;">
+                    <h3>Bulk Upload Attendees (CSV)</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">Upload a CSV file with
+                        columns: Name, Email, Phone Number</p>
+                    <div class="form-group">
+                        <input type="file" id="csvFileInput" accept=".csv" style="padding: 10px 0; border: none;">
+                    </div>
+                    <button class="btn-google" style="margin-top: 10px; width: auto;" onclick="handleCSVUpload()">
+                        <span class="material-symbols-outlined" style="margin-right: 6px;">upload_file</span> Process
+                        CSV
+                    </button>
+                    <div id="csvUploadResult"
+                        style="margin-top: 16px; font-size: 14px; color: var(--success); font-weight: 500;"></div>
+                </div>
             </div>
 
-            <!-- Scanner Panel -->
             <div id="panel-scanner" class="panel">
                 <h2 class="page-title">Volunteer Scanner</h2>
                 <div class="card">
@@ -597,28 +974,58 @@
                         </h4>
                         <p id="alertMsg">Message goes here</p>
                     </div>
+
+                    <div id="confirmCheckinBox" class="card"
+                        style="display: none; margin-top: 24px; border: 2px solid var(--primary);">
+                        <h3 style="color: var(--primary); margin-bottom: 12px;">Confirm Attendee Check-in</h3>
+                        <div id="confirmAttendeeDetails" style="margin-bottom: 20px; line-height: 1.6;"></div>
+                        <button class="btn-primary" id="btnConfirmCheckin" onclick="confirmCheckIn()">Confirm
+                            Check-in</button>
+                    </div>
                 </div>
             </div>
-
         </main>
     </div>
 
     <script>
-        // --- State ---
         let appState = {
             currentUser: null,
             totalTickets: 0,
             totalCheckins: 0,
-            attendees: {}, // Stores simulated DB records
+            attendees: {},
             currentId: 1000,
             mockUsers: [
                 { id: 1, name: "Alice Smith", email: "alice@example.com", role: null },
                 { id: 2, name: "Bob Johnson", email: "bob@example.com", role: "registration" },
-                { id: 3, name: "Charlie Davis", email: "charlie@example.com", role: "checkin" }
+                { id: 3, name: "Charlie Davis", email: "charlie@example.com", role: "checkin" },
+                { id: 4, name: "Diana Prince", email: "diana@example.com", role: null }
             ]
         };
 
-        // --- Auth Logic ---
+        function populateDummyData() {
+            const dummy = [
+                { name: 'Sarah Connor', email: 'sarah@example.com', phone: '+1234560001' },
+                { name: 'John Connor', email: 'john@example.com', phone: '+1234560002' },
+                { name: 'Kyle Reese', email: 'kyle@example.com', phone: '+1234560003' }
+            ];
+            dummy.forEach(d => {
+                const regId = ++appState.currentId;
+                appState.attendees[regId] = {
+                    id: regId, name: d.name, email: d.email, phone: d.phone,
+                    token: `${regId}--${btoa(`${d.name}::${d.email}::${d.phone}`)}`, hasCheckedIn: false
+                };
+                appState.totalTickets++;
+            });
+            const first = appState.attendees[1001];
+            if (first) {
+                first.hasCheckedIn = true;
+                first.checkinTime = new Date().toLocaleString();
+                first.checkinVenue = 'Main Theater';
+                appState.totalCheckins++;
+            }
+        }
+        populateDummyData();
+
         function handleLogin(e, method = 'email') {
             if (e) e.preventDefault();
 
@@ -626,7 +1033,6 @@
             let role = 'checkin';
             let name = 'Volunteer';
 
-            // Simulate RBAC based on PRD
             if (email.startsWith('admin')) {
                 role = 'admin';
                 name = 'Abhinav Arora';
@@ -644,9 +1050,10 @@
             document.getElementById('loginView').style.display = 'none';
             document.getElementById('appView').style.display = 'flex';
 
-            // Default route based on role
             if (role === 'checkin') {
                 switchPanel('scanner');
+            } else if (role === 'registration') {
+                switchPanel('register');
             } else {
                 switchPanel('dashboard');
             }
@@ -659,53 +1066,85 @@
             document.getElementById('loginForm').reset();
         }
 
-        // --- Navigation Logic ---
+        function toggleSidebar() {
+            const sidebar = document.getElementById('appSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
         function setupSidebar() {
             const role = appState.currentUser.role;
 
-            // Set User Info
             document.getElementById('userName').textContent = appState.currentUser.name;
             const roleLabels = { 'admin': 'Festival Organizer', 'registration': 'Registration Volunteer', 'checkin': 'Check-in Volunteer' };
             document.getElementById('userRole').textContent = roleLabels[role];
 
-            // Set Avatar based on name
             document.getElementById('userAvatar').style.backgroundImage = `url('https://ui-avatars.com/api/?name=${encodeURIComponent(appState.currentUser.name)}&background=791716&color=fff')`;
 
-            // Enforce RBAC on Nav Items - Distinct Dashboards per PRD
             document.getElementById('nav-volunteers').style.display = (role === 'admin') ? 'flex' : 'none';
             document.getElementById('nav-dashboard').style.display = (role === 'admin') ? 'flex' : 'none';
-
-            document.getElementById('nav-register').style.display = (role === 'registration') ? 'flex' : 'none';
+            document.getElementById('nav-register').style.display = (role === 'registration' || role === 'admin') ? 'flex' : 'none';
             document.getElementById('nav-scanner').style.display = (role === 'checkin') ? 'flex' : 'none';
 
-            // Initial load for admin
-            if (role === 'admin') renderVolunteerList();
+            document.getElementById('bulkUploadCard').style.display = (role === 'admin') ? 'block' : 'none';
+
+            if (role === 'admin') {
+                renderVolunteerList();
+                renderAttendeesTable();
+                renderCheckinsTable();
+                updateStats();
+            }
         }
 
         function switchPanel(panelId) {
-            // Hide all panels
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
-            // Show selected
             document.getElementById(`panel-${panelId}`).classList.add('active');
             document.getElementById(`nav-${panelId}`).classList.add('active');
+
+            document.getElementById('appSidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('open');
+
+            if (panelId === 'dashboard') {
+                renderAttendeesTable();
+                renderCheckinsTable();
+                updateStats();
+            }
         }
 
-        // --- Admin: Volunteer Management ---
         function renderVolunteerList() {
             const tbody = document.getElementById('volunteerList');
+            if (!tbody) return;
             tbody.innerHTML = '';
 
-            appState.mockUsers.forEach(user => {
-                const tr = document.createElement('tr');
-                tr.style.borderBottom = '1px solid var(--border-light)';
+            const searchTerm = document.getElementById('searchVolunteers').value.toLowerCase();
+            const filterRole = document.getElementById('filterRole').value;
+            const sortVal = document.getElementById('sortVolunteers').value;
 
+            let filteredUsers = appState.mockUsers.filter(user => {
+                const matchesSearch = user.name.toLowerCase().includes(searchTerm) || user.email.toLowerCase().includes(searchTerm);
+                const roleStr = user.role === null ? 'null' : user.role;
+                const matchesRole = filterRole === 'all' || roleStr === filterRole;
+                return matchesSearch && matchesRole;
+            });
+
+            filteredUsers.sort((a, b) => {
+                if (sortVal === 'name_asc') return a.name.localeCompare(b.name);
+                if (sortVal === 'name_desc') return b.name.localeCompare(a.name);
+                return 0;
+            });
+
+            filteredUsers.forEach(user => {
+                const tr = document.createElement('tr');
+                tr.classList.add('has-checkbox');
                 tr.innerHTML = `
-                    <td style="padding: 16px;"><strong>${user.name}</strong></td>
-                    <td style="padding: 16px; color: var(--text-muted);">${user.email}</td>
-                    <td style="padding: 16px;">
-                        <select onchange="updateVolunteerRole(${user.id}, this.value)" style="padding: 8px; border-radius: 6px; border: 1px solid var(--border); font-size: 14px; width: 100%; max-width: 200px;">
+                    <td class="col-checkbox" style="width: 40px;"><input type="checkbox" class="vol-checkbox" value="${user.id}"></td>
+                    <td class="col-name">${user.name}</td>
+                    <td class="col-email col-subtitle">${user.email}</td>
+                    <td class="col-role">
+                        <select onchange="updateVolunteerRole(${user.id}, this.value)" style="padding: 8px; border-radius: 6px; border: 1px solid var(--border-light); font-size: 14px; width: 100%; max-width: 200px; background-color: var(--surface);">
                             <option value="null" ${user.role === null ? 'selected' : ''}>Unassigned</option>
                             <option value="registration" ${user.role === 'registration' ? 'selected' : ''}>Registration Vol.</option>
                             <option value="checkin" ${user.role === 'checkin' ? 'selected' : ''}>Check-in Vol.</option>
@@ -716,16 +1155,128 @@
             });
         }
 
-        function updateVolunteerRole(userId, newRole) {
+        function toggleSelectAllVolunteers(checkbox) {
+            document.querySelectorAll('.vol-checkbox').forEach(cb => cb.checked = checkbox.checked);
+        }
+
+        function applyBulkRole() {
+            const newRole = document.getElementById('bulkRoleSelect').value;
+            const checkedBoxes = document.querySelectorAll('.vol-checkbox:checked');
+            if (checkedBoxes.length === 0) return alert('Select at least one volunteer to assign.');
+
+            checkedBoxes.forEach(cb => {
+                updateVolunteerRole(parseInt(cb.value), newRole, true);
+            });
+            document.getElementById('selectAllVol').checked = false;
+            renderVolunteerList();
+        }
+
+        function updateVolunteerRole(userId, newRole, skipRender = false) {
             const user = appState.mockUsers.find(u => u.id === userId);
             if (user) {
                 user.role = newRole === 'null' ? null : newRole;
-                console.log(`Updated ${user.name} to role: ${user.role}`);
-                // In a real app, this would trigger an API call to update the database
             }
+            if (!skipRender) renderVolunteerList();
         }
 
-        // --- Registration Logic ---
+        function renderAttendeesTable() {
+            const tbody = document.getElementById('attendeesTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const searchTerm = document.getElementById('searchAttendees').value.toLowerCase();
+            const sortVal = document.getElementById('sortAttendees').value;
+
+            let attendeesList = Object.values(appState.attendees).filter(a =>
+                a.name.toLowerCase().includes(searchTerm) || a.email.toLowerCase().includes(searchTerm)
+            );
+
+            attendeesList.sort((a, b) => {
+                if (sortVal === 'name_asc') return a.name.localeCompare(b.name);
+                if (sortVal === 'name_desc') return b.name.localeCompare(a.name);
+                if (sortVal === 'id_desc') return b.id - a.id;
+                return 0;
+            });
+
+            attendeesList.forEach(a => {
+                const statusBadge = a.hasCheckedIn
+                    ? '<span class="badge success">Checked In</span>'
+                    : '<span class="badge neutral">Pending</span>';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="col-id mobile-pill">#${a.id}</td>
+                    <td class="col-name">${a.name}</td>
+                    <td class="col-email col-subtitle">${a.email}</td>
+                    <td class="col-phone mobile-pill">${a.phone}</td>
+                    <td class="col-status">${statusBadge}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderCheckinsTable() {
+            const tbody = document.getElementById('checkinsTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const searchTerm = document.getElementById('searchCheckins').value.toLowerCase();
+            const sortVal = document.getElementById('sortCheckins').value;
+
+            let checkinsList = Object.values(appState.attendees).filter(a => a.hasCheckedIn &&
+                (a.name.toLowerCase().includes(searchTerm) || a.email.toLowerCase().includes(searchTerm))
+            );
+
+            checkinsList.sort((a, b) => {
+                if (sortVal === 'name_asc') return a.name.localeCompare(b.name);
+                if (sortVal === 'name_desc') return b.name.localeCompare(a.name);
+                if (sortVal === 'time_desc') return new Date(b.checkinTime) - new Date(a.checkinTime);
+                return 0;
+            });
+
+            checkinsList.forEach(a => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="col-id mobile-pill">#${a.id}</td>
+                    <td class="col-name">${a.name}</td>
+                    <td class="col-email col-subtitle">${a.email}</td>
+                    <td class="col-time mobile-pill">${a.checkinTime} &middot; ${a.checkinVenue}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function downloadCSV(type) {
+            let data = [];
+            let headers = [];
+            let filename = '';
+
+            if (type === 'attendees') {
+                headers = ['Reg ID', 'Name', 'Email', 'Phone', 'Status'];
+                data = Object.values(appState.attendees).map(a => [
+                    a.id, a.name, a.email, a.phone, a.hasCheckedIn ? 'Checked In' : 'Pending'
+                ]);
+                filename = 'festival_attendees.csv';
+            } else if (type === 'checkins') {
+                headers = ['Reg ID', 'Name', 'Email', 'Phone', 'Check-in Time', 'Venue'];
+                data = Object.values(appState.attendees).filter(a => a.hasCheckedIn).map(a => [
+                    a.id, a.name, a.email, a.phone, a.checkinTime, a.checkinVenue
+                ]);
+                filename = 'festival_checkins.csv';
+            }
+
+            let csvContent = headers.join(',') + '\n' + data.map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         function handleRegistration(e) {
             e.preventDefault();
 
@@ -734,25 +1285,17 @@
             const phone = document.getElementById('regPhone').value;
             const regId = ++appState.currentId;
 
-            // PRD: <registration_id>--encrypt(<NAME>::<EMAIL>::<PHONE NO>)
-            // Simulated encryption via Base64
             const rawData = `${name}::${email}::${phone}`;
             const token = `${regId}--${btoa(rawData)}`;
 
-            // Save to DB
             appState.attendees[regId] = {
-                id: regId,
-                name: name,
-                email: email,
-                phone: phone,
-                hasCheckedIn: false,
-                token: token
+                id: regId, name: name, email: email, phone: phone, hasCheckedIn: false, token: token
             };
 
             appState.totalTickets++;
             updateStats();
+            if (appState.currentUser && appState.currentUser.role === 'admin') renderAttendeesTable();
 
-            // Display QR
             const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(token)}`;
             document.getElementById('qrImage').src = qrUrl;
             document.getElementById('qrTokenString').textContent = token;
@@ -761,13 +1304,54 @@
             e.target.reset();
         }
 
-        // --- Scanner Logic ---
+        function handleCSVUpload() {
+            const fileInput = document.getElementById('csvFileInput');
+            if (!fileInput.files.length) return alert('Please select a CSV file first.');
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const text = e.target.result;
+                const lines = text.split('\n');
+                let addedCount = 0;
+
+                for (let i = 1; i < lines.length; i++) {
+                    if (!lines[i].trim()) continue;
+                    const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+                    if (cols.length >= 3) {
+                        const name = cols[0];
+                        const email = cols[1];
+                        const phone = cols[2];
+                        const regId = ++appState.currentId;
+                        const token = `${regId}--${btoa(`${name}::${email}::${phone}`)}`;
+
+                        appState.attendees[regId] = {
+                            id: regId, name, email, phone, token, hasCheckedIn: false
+                        };
+                        addedCount++;
+                    }
+                }
+
+                appState.totalTickets += addedCount;
+                updateStats();
+                renderAttendeesTable();
+                document.getElementById('csvUploadResult').textContent = `Successfully processed ${addedCount} attendees from CSV.`;
+                fileInput.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+        let pendingCheckinRegId = null;
+
         function maskEmail(email) {
-            const [local, domain] = email.split('@');
-            return `${local[0]}***@${domain}`;
+            const parts = email.split('@');
+            if (parts.length !== 2) return email;
+            return `${parts[0][0]}***@${parts[1]}`;
         }
 
         function maskPhone(phone) {
+            if (phone.length < 7) return phone;
             return phone.substring(0, 3) + '****' + phone.slice(-4);
         }
 
@@ -775,12 +1359,14 @@
             const token = document.getElementById('scanInput').value.trim();
             const venue = document.getElementById('scanVenue').value;
             const alertBox = document.getElementById('scanAlert');
-            const alertTitle = document.getElementById('alertTitle').querySelector('span:last-child');
+            const alertTitle = alertBox.querySelector('#alertTitle span:last-child');
             const alertIcon = document.getElementById('alertIcon');
             const alertMsg = document.getElementById('alertMsg');
+            const confirmBox = document.getElementById('confirmCheckinBox');
 
             alertBox.style.display = 'block';
-            alertBox.className = 'scan-alert'; // reset classes
+            alertBox.className = 'scan-alert';
+            confirmBox.style.display = 'none';
 
             if (!token) {
                 alertBox.classList.add('error');
@@ -791,7 +1377,6 @@
             }
 
             try {
-                // Frontend Decryption Simulation
                 const parts = token.split('--');
                 if (parts.length !== 2) throw new Error("Format");
 
@@ -810,20 +1395,20 @@
                 }
 
                 if (attendee.hasCheckedIn) {
-                    // PRD: Duplicate scans are logged but not flagged as errors.
                     alertBox.classList.add('warning');
                     alertTitle.textContent = 'Warning: Already Checked In';
                     alertIcon.textContent = 'warning';
                     alertMsg.innerHTML = `<strong>${name}</strong> previously checked in.<br>Email: ${maskEmail(email)} | Phone: ${maskPhone(phone)}`;
                 } else {
-                    alertBox.classList.add('success');
-                    alertTitle.textContent = 'Access Granted';
-                    alertIcon.textContent = 'check_circle';
-                    alertMsg.innerHTML = `<strong>${name}</strong> successfully checked into ${venue}.<br>Email: ${maskEmail(email)} | Phone: ${maskPhone(phone)}`;
-
-                    attendee.hasCheckedIn = true;
-                    appState.totalCheckins++;
-                    updateStats();
+                    alertBox.style.display = 'none';
+                    confirmBox.style.display = 'block';
+                    document.getElementById('confirmAttendeeDetails').innerHTML = `
+                        <strong>Name:</strong> ${name}<br>
+                        <strong>Email:</strong> ${maskEmail(email)}<br>
+                        <strong>Phone:</strong> ${maskPhone(phone)}<br>
+                        <strong>Venue Target:</strong> ${venue}
+                    `;
+                    pendingCheckinRegId = regId;
                 }
 
             } catch (err) {
@@ -836,11 +1421,36 @@
             document.getElementById('scanInput').value = '';
         }
 
-        function updateStats() {
-            document.getElementById('statTickets').textContent = appState.totalTickets;
-            document.getElementById('statCheckins').textContent = appState.totalCheckins;
+        function confirmCheckIn() {
+            if (!pendingCheckinRegId) return;
+
+            const attendee = appState.attendees[pendingCheckinRegId];
+            const venue = document.getElementById('scanVenue').value;
+
+            attendee.hasCheckedIn = true;
+            attendee.checkinTime = new Date().toLocaleString();
+            attendee.checkinVenue = venue;
+
+            appState.totalCheckins++;
+            updateStats();
+
+            document.getElementById('confirmCheckinBox').style.display = 'none';
+
+            const alertBox = document.getElementById('scanAlert');
+            alertBox.style.display = 'block';
+            alertBox.className = 'scan-alert success';
+            document.getElementById('alertTitle').innerHTML = `<span class="material-symbols-outlined" id="alertIcon">check_circle</span> <span>Access Granted</span>`;
+            document.getElementById('alertMsg').innerHTML = `<strong>${attendee.name}</strong> successfully checked into ${venue}.`;
+
+            pendingCheckinRegId = null;
         }
 
+        function updateStats() {
+            const statTickets = document.getElementById('statTickets');
+            const statCheckins = document.getElementById('statCheckins');
+            if (statTickets) statTickets.textContent = appState.totalTickets;
+            if (statCheckins) statCheckins.textContent = appState.totalCheckins;
+        }
     </script>
 </body>
 
