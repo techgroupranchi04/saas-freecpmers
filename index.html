@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film Festivals Ticketing and Attendance Tracking</title>
+    <title>Freecomers Festival Ticketing</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         rel="stylesheet">
@@ -715,16 +715,14 @@
             </div>
 
             <nav class="nav-menu">
-                <div class="nav-item active" id="nav-dashboard" onclick="switchPanel('dashboard')">
-                    <span class="material-symbols-outlined">analytics</span>
-                    Dashboard
-                </div>
-
                 <div class="nav-item" id="nav-volunteers" onclick="switchPanel('volunteers')">
                     <span class="material-symbols-outlined">group</span>
                     Manage Volunteers
                 </div>
-
+                <div class="nav-item active" id="nav-dashboard" onclick="switchPanel('dashboard')">
+                    <span class="material-symbols-outlined">analytics</span>
+                    Dashboard
+                </div>
                 <div class="nav-item" id="nav-register" onclick="switchPanel('register')">
                     <span class="material-symbols-outlined">person_add</span>
                     Register Attendee
@@ -970,8 +968,7 @@
 
                     <div id="scanAlert" class="scan-alert">
                         <h4 id="alertTitle"><span class="material-symbols-outlined" id="alertIcon">check_circle</span>
-                            <span>Status</span>
-                        </h4>
+                            <span>Status</span></h4>
                         <p id="alertMsg">Message goes here</p>
                     </div>
 
@@ -1085,7 +1082,7 @@
             document.getElementById('nav-volunteers').style.display = (role === 'admin') ? 'flex' : 'none';
             document.getElementById('nav-dashboard').style.display = (role === 'admin') ? 'flex' : 'none';
             document.getElementById('nav-register').style.display = (role === 'registration' || role === 'admin') ? 'flex' : 'none';
-            document.getElementById('nav-scanner').style.display = (role === 'checkin') ? 'flex' : 'none';
+            document.getElementById('nav-scanner').style.display = (role === 'checkin' || role === 'admin') ? 'flex' : 'none';
 
             document.getElementById('bulkUploadCard').style.display = (role === 'admin') ? 'block' : 'none';
 
